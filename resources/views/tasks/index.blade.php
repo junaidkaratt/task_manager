@@ -120,13 +120,13 @@
                 <div class="card shadow-lg">
                     <div class="card-body">
 
-                        <!-- Header -->
+                        
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3>My Tasks</h3>
                             <span class="badge badge-danger">Checklist</span>
                         </div>
 
-                        <!-- Search & Filter -->
+                        
 
                         <input type="text" id="search" class="form-control" placeholder="Search tasks...">
                         <select id="statusFilter" class="form-control mb-3">
@@ -143,64 +143,65 @@
                             <button class="btn btn-primary mt-2">Add Task</button>
                         </form>
 
-                        <!-- Task List -->
+                        
                         <div id="tasksContainer">
-                            <table class="table table-bordered table-striped">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th></th> <!-- Checkbox -->
-                                        <th>Title</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tasks as $task)
-                                        <tr>
-                                            <!-- Checkbox -->
-                                            <td>
-                                                <input class="form-check-input task-check" type="checkbox"
-                                                    data-id="{{ $task->id }}"
-                                                    {{ $task->status == 'completed' ? 'checked' : '' }}>
-                                            </td>
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="thead-light">
+            <tr>
+                <th style="width:40px;"></th> 
+                <th>Title</th>
+                <th style="width:120px;">Status</th>
+                <th style="width:150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($tasks as $task)
+            <tr>
+                
+                <td class="text-center">
+                    <input class="form-check-input task-check" type="checkbox"
+                           data-id="{{ $task->id }}"
+                           {{ $task->status == 'completed' ? 'checked' : '' }}>
+                </td>
 
-                                            <!-- Title -->
-                                            <td
-                                                class="{{ $task->status == 'completed' ? 'text-decoration-line-through text-muted' : '' }}">
-                                                {{ $task->title }}
-                                            </td>
+                
+                <td class="{{ $task->status == 'completed' ? 'text-decoration-line-through text-muted' : '' }}">
+                    {{ $task->title }}
+                </td>
 
-                                            <!-- Status -->
-                                            <td>
-                                                <span
-                                                    class="badge
+                
+                <td class="text-center">
+                    <span class="badge
                         {{ $task->status === 'completed' ? 'bg-success' : ($task->status === 'in-progress' ? 'bg-info' : 'bg-warning') }}">
-                                                    {{ ucfirst($task->status) }}
-                                                </span>
-                                            </td>
+                        {{ ucfirst($task->status) }}
+                    </span>
+                </td>
 
-                                            <!-- Actions -->
-                                            <td>
-                                                <i class="fa fa-eye icon-btn show-desc me-2"
-                                                    data-title="{{ $task->title }}"
-                                                    data-desc="{{ $task->description }}"></i>
-                                                <i class="fa fa-pencil icon-btn edit-task me-2"
-                                                    data-id="{{ $task->id }}" data-title="{{ $task->title }}"
-                                                    data-desc="{{ $task->description }}"></i>
-                                                <i class="fa fa-times-circle text-danger delete-task"
-                                                    data-id="{{ $task->id }}"
-                                                    style="font-size:18px; cursor:pointer;"></i>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                
+                <td class="text-center">
+                    <div class="d-flex justify-content-center gap-2">
+                        <i class="fa fa-eye icon-btn show-desc"
+                           data-title="{{ $task->title }}"
+                           data-desc="{{ $task->description }}"></i>
+                        <i class="fa fa-pencil icon-btn edit-task"
+                           data-id="{{ $task->id }}"
+                           data-title="{{ $task->title }}"
+                           data-desc="{{ $task->description }}"></i>
+                        <i class="fa fa-times-circle text-danger delete-task"
+                           data-id="{{ $task->id }}"
+                           style="font-size:18px; cursor:pointer;"></i>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-                            <!-- Pagination -->
-                            <div class="mt-3">
-                                {!! $tasks->links('pagination::bootstrap-4') !!}
-                            </div>
-                        </div>
+    
+    <div class="mt-3">
+        {!! $tasks->links('pagination::bootstrap-4') !!}
+    </div>
+</div>
 
 
                     </div>
@@ -209,7 +210,7 @@
         </div>
     </div>
 
-    <!-- Description Modal -->
+    
     <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
