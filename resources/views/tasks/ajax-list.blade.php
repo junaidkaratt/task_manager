@@ -34,15 +34,15 @@
 
                 
                 <td class="text-center">
-                    <div class="d-flex justify-content-center gap-2">
-                        <i class="fa fa-eye icon-btn show-desc"
+                    <div class="d-flex justify-content-center">
+                        <i class="fa fa-eye icon-btn show-desc mr-2"
                            data-title="{{ $task->title }}"
                            data-desc="{{ $task->description }}"></i>
-                        <i class="fa fa-pencil icon-btn edit-task"
+                        <i class="fa fa-pencil icon-btn edit-task mr-2"
                            data-id="{{ $task->id }}"
                            data-title="{{ $task->title }}"
                            data-desc="{{ $task->description }}"></i>
-                        <i class="fa fa-times-circle text-danger delete-task"
+                        <i class="fa fa-times-circle text-danger delete-task mr-2"
                            data-id="{{ $task->id }}"
                            style="font-size:18px; cursor:pointer;"></i>
                     </div>

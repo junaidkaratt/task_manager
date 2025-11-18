@@ -72,6 +72,7 @@
             cursor: pointer;
             font-size: 18px;
             color: #333;
+            padding: 0 10px
         }
 
         .icon-btn:hover {
