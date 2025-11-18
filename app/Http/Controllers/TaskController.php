@@ -87,4 +87,15 @@ class TaskController extends Controller
             'tasks' => $tasks
         ]);
     }
+    public function toggleStatus(Request $request, Task $task)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,completed,in-progress',
+        ]);
+
+        $task->status = $request->status;
+        $task->save();
+
+        return response()->json(['success' => true, 'status' => $task->status]);
+    }
 }
