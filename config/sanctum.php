@@ -22,6 +22,8 @@ return [
         // Sanctum::currentRequestHost(),
     ))),
 
+    'personal_access_token_model' => Laravel\Sanctum\PersonalAccessToken::class,
+
     /*
     |--------------------------------------------------------------------------
     | Sanctum Guards

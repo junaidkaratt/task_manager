@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
         }
 
@@ -21,7 +23,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'token' => $token
+            'token' => $token,
         ]);
     }
 }
